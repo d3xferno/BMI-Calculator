@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
 function App() {
+  const [ht,setHt] = useState(0)
+  const [wt,setWt] = useState(0)
+  const [bmi,setBmi] = useState(0)
+  const Result = () =>{
+    return(
+      <div>
+        BMI:{bmi.toString().slice(0,4)}
+      </div>
+    )
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="bmi">
+        <h2>BMI Calculator</h2>
+        <div className="card">
+          <input className="ele" onChange={(event)=> setHt(event.target.value)}></input>
+          <input className="ele" onChange={(event)=> setWt(event.target.value)}></input>
+          <button className="ele" onClick={(event)=> setBmi((wt/(ht*ht))*10000)}>Submit</button>
+          <Result className="ele"/>
+        </div>
+      </div>
     </div>
   );
 }
